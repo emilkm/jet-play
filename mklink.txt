@@ -1,0 +1,8 @@
+D:\development\Artena.JS\Client\node_modules>mklink -D amf D:\development\Artena.JS\Client\local_modules\amf
+The syntax of the command is incorrect.
+
+D:\development\Artena.JS\Client\node_modules>mklink /D amf D:\development\Artena.JS\Client\local_modules\amf
+symbolic link created for amf <<===>> D:\development\Artena.JS\Client\local_modules\amf
+
+D:\development\Artena.JS\Client\node_modules>mklink /D webix D:\development\Artena.JS\Client\local_modules\webix
+symbolic link created for webix <<===>> D:\development\Artena.JS\Client\local_modules\webix
