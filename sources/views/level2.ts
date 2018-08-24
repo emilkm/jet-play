@@ -6,7 +6,9 @@ export default class level2 extends JetView {
             rows: [
                 { template: "level 2", height: 40 },
                 { padding: 5,
-                    rows: [ { template: "stop here for now" } ]
+                    rows: [
+                        { template: "stop here for now" }
+                    ]
                 }
             ]
         };

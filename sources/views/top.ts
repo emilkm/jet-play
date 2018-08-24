@@ -6,7 +6,9 @@ export default class TopView extends JetView {
             rows: [
 				{ template: "top", height: 40 },
 				{ padding: 5,
-                    rows: [ { $subview: true } ]
+                    rows: [
+                    	{ $subview: true }
+                    ]
 				}
 			]
 		};
