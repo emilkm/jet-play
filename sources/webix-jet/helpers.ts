@@ -58,7 +58,9 @@ export function parse(url:string):IJetURLChunk[]{
 		// store parsed values
 		chunks[i] = {
 			page: (pos > -1 ? test.substr(0, pos) : test),
-			params:result, index:i+1
+			params:result,
+			index:i+1,
+			urlstr:url
 		};
 	}
 

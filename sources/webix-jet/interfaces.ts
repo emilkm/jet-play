@@ -36,6 +36,7 @@ export interface IJetURLChunk{
 	index: number;
 	page:string;
 	params:{ [name:string]:string };
+	urlstr: string;
 }
 
 export type IJetURL = IJetURLChunk[];
@@ -78,7 +79,7 @@ export interface IJetConfig{
 	container:HTMLElement | string;
 	animation:boolean;
 	router: IJetRouterFactory;
-	views: ((url:string) => any) | IHash;
+	views: ((urlpage:string,fullurl:string) => any) | IHash;
 }
 
 export interface IJetRouterOptions{

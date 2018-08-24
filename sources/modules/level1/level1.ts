@@ -6,7 +6,9 @@ export default class level1 extends JetView {
             rows: [
                 { template: "level 1", height: 40 },
                 { padding: 5,
-                    rows: [ { $subview: true } ]
+                    rows: [
+                        { $subview: true }
+                    ]
                 }
             ]
         };

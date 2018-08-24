@@ -136,11 +136,12 @@ export class JetApp extends JetBase implements IJetApp {
 		this.render(temp, parse(this.getRouter().get()), this._parent);
 	}
 
-	loadView(url): Promise<any> {
+	loadView(url: IJetURLChunk): Promise<any> {
 		const views = this.config.views;
 		let result = null;
+        let urlpage = url.page;
 
-		if (url === ""){
+		if (urlpage === ""){
 			return Promise.resolve(
 				this._loadError("", new Error("Webix Jet: Empty url segment"))
 			);
@@ -150,23 +151,27 @@ export class JetApp extends JetBase implements IJetApp {
 			if (views) {
 				if (typeof views === "function") {
 					// custom loading strategy
-					result = views(url);
+					result = views(urlpage, url.urlstr);
 				} else {
 					// predefined hash
-					result = views[url];
+					result = views[urlpage];
 				}
 				if (typeof result === "string"){
-					url = result;
+                    urlpage = result;
 					result = null;
 				}
 			}
 
 			if (!result){
-				url = url.replace(/\./g, "/");
-				result = require("jet-views/"+url);
+				if (urlpage.indexOf("modules/") == 0) {
+					result = require("@root/"+urlpage);
+				} else {
+                    urlpage = urlpage.replace(/\./g, "/");
+                    result = require("jet-views/"+urlpage);
+				}
 			}
 		} catch(e){
-			result = this._loadError(url, e);
+			result = this._loadError(urlpage, e);
 		}
 
 		// custom handler can return view or its promise
@@ -177,7 +182,7 @@ export class JetApp extends JetBase implements IJetApp {
 		// set error handler
 		result = result
 			.then(module => module.__esModule ? module.default : module)
-			.catch(err => this._loadError(url, err));
+			.catch(err => this._loadError(urlpage, err));
 
 		return result;
 	}
@@ -190,7 +195,7 @@ export class JetApp extends JetBase implements IJetApp {
 		if (now && now.getName() === name) {
 			view = Promise.resolve(now);
 		} else {
-			view = this.loadView(chunk.page)
+			view = this.loadView(chunk)
 				.then(ui => this.createView(ui, name));
 		}
 

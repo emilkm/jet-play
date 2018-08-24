@@ -1,5 +1,6 @@
 import "./styles/app.css";
 import { JetApp, EmptyRouter, HashRouter } from "@webix-jet/index";
+import views from "@root/views";
 
 declare var APPNAME, VERSION, PRODUCTION, BUILD_AS_MODULE;
 
@@ -11,6 +12,7 @@ export default class App extends JetApp {
 			router 	: BUILD_AS_MODULE ? EmptyRouter : HashRouter,
 			debug 	: !PRODUCTION,
 			start 	: "/top/level1/level2",
+            views	: views.resolveviews
 		};
 
 		super({ ...defaults, ...config });
