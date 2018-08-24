@@ -22,7 +22,7 @@ With **webix-jet** as is, loading of *level2* subview fails.
 
 ![](images/03.png)
 
-Modified **webix-jet** works.
+[Modified](https://github.com/emilkm/jet-play/commit/d85f888e41a4b13c7d50e859c60d0840c41d78c8) **webix-jet** works.
 
 ![](images/03a.png)
 
@@ -30,4 +30,3 @@ There is probably a more elegant way to solve this.
 
 The solution assumes that bundled chunks will go into a folder called *modules*. It works by enabling the JetApp::loadView to make a decision about where to *require* the page from. 
 
-https://github.com/emilkm/jet-play/commit/d85f888e41a4b13c7d50e859c60d0840c41d78c8
