@@ -20,6 +20,7 @@ module.exports = function(env) {
     }
 
     let config = {
+        mode: (production) ? "production" : "development",
         entry: (function() {
             if (asmodule) {
                 return "./sources/modules/" + env.module + "/" + env.module + ".ts";

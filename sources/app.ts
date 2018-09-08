@@ -19,7 +19,7 @@ export default class App extends JetApp {
 	}
 }
 
-if (!BUILD_AS_MODULE){
+if (!BUILD_AS_MODULE) {
     webix.ready(() => {
         let app = new App();
         app.render();

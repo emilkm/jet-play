@@ -39,9 +39,24 @@ export class JetApp extends JetBase implements IJetApp {
 		}, config, true);
 
 		this._name = this.config.name;
-		this._services = {};
 
-		webix.extend(this, webix.EventSystem);
+		if (config.rootevs) {
+			this._services = config._services;
+			this._events = config._events;
+			this["_evs_events"] = config._evs_events;
+			this["evs_handlers"] = config._evs_handlers;
+			this["_evs_map"] = config._evs_map;
+			this["attachEvent"] = config.attachEvent;
+			this["blockEvent"] = config.blockEvent;
+			this["callEvent"] = config.callEvent;
+			this["detachEvent"] = config.detachEvent;
+			this["hasEvent"] = config.hasEvent;
+			this["mapEvent"] = config.mapEvent;
+			this["unblockEvent"] = config.unblockEvent;
+		} else {
+            this._services = {};
+            webix.extend(this, webix.EventSystem);
+        }
 	}
 
 	getService(name: string) {
@@ -136,12 +151,11 @@ export class JetApp extends JetBase implements IJetApp {
 		this.render(temp, parse(this.getRouter().get()), this._parent);
 	}
 
-	loadView(url: IJetURLChunk): Promise<any> {
+	loadView(url): Promise<any> {
 		const views = this.config.views;
 		let result = null;
-        let urlpage = url.page;
 
-		if (urlpage === ""){
+		if (url === ""){
 			return Promise.resolve(
 				this._loadError("", new Error("Webix Jet: Empty url segment"))
 			);
@@ -151,27 +165,23 @@ export class JetApp extends JetBase implements IJetApp {
 			if (views) {
 				if (typeof views === "function") {
 					// custom loading strategy
-					result = views(urlpage, url.urlstr);
+					result = views(url);
 				} else {
 					// predefined hash
-					result = views[urlpage];
+					result = views[url];
 				}
 				if (typeof result === "string"){
-                    urlpage = result;
+					url = result;
 					result = null;
 				}
 			}
 
 			if (!result){
-				if (urlpage.indexOf("modules/") == 0) {
-					result = require("@root/"+urlpage);
-				} else {
-                    urlpage = urlpage.replace(/\./g, "/");
-                    result = require("jet-views/"+urlpage);
-				}
+				url = url.replace(/\./g, "/");
+				result = require("jet-views/"+url);
 			}
 		} catch(e){
-			result = this._loadError(urlpage, e);
+			result = this._loadError(url, e);
 		}
 
 		// custom handler can return view or its promise
@@ -182,7 +192,7 @@ export class JetApp extends JetBase implements IJetApp {
 		// set error handler
 		result = result
 			.then(module => module.__esModule ? module.default : module)
-			.catch(err => this._loadError(urlpage, err));
+			.catch(err => this._loadError(url, err));
 
 		return result;
 	}
@@ -195,7 +205,7 @@ export class JetApp extends JetBase implements IJetApp {
 		if (now && now.getName() === name) {
 			view = Promise.resolve(now);
 		} else {
-			view = this.loadView(chunk)
+			view = this.loadView(chunk.page)
 				.then(ui => this.createView(ui, name));
 		}
 

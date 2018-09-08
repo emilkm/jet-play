@@ -2,11 +2,9 @@ export default {
     resolveviews
 }
 
-function resolveviews(page, urlstr) {
+function resolveviews(page) {
     if (page === "level1") {
-        return import(/* webpackChunkName: "level1" */ "modules/level1/level1");
-    } else if (urlstr.indexOf("level1") > 0 && urlstr.indexOf(page) > urlstr.indexOf("level1")) {
-        return "modules/level1/views/" + page;
+        return import(/* webpackChunkName: "level1" */ "modules/level1/app");
     }
     return page;
 }

@@ -1,4 +1,4 @@
-import {JetView} from "@webix-jet/index";
+import {JetView} from "@webix-jet/JetView";
 
 export default class TopView extends JetView {
 	config() {

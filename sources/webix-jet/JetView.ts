@@ -119,10 +119,6 @@ export class JetView extends JetBase{
 
 				const urlstr = url2str(url);
 
-                for	(let i=0; i<url.length; i++){
-                    url[i].urlstr = urlstr;
-                }
-
 				return this.app.canNavigate(urlstr, this).then(redirect => {
 					if (redirect !== null){
 						if (urlstr !== redirect){
