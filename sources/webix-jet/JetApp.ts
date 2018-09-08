@@ -39,9 +39,24 @@ export class JetApp extends JetBase implements IJetApp {
 		}, config, true);
 
 		this._name = this.config.name;
-		this._services = {};
 
-		webix.extend(this, webix.EventSystem);
+		if (config.rootevs) {
+			this._services = config._services;
+			this._events = config._events;
+			this["_evs_events"] = config._evs_events;
+			this["evs_handlers"] = config._evs_handlers;
+			this["_evs_map"] = config._evs_map;
+			this["attachEvent"] = config.attachEvent;
+			this["blockEvent"] = config.blockEvent;
+			this["callEvent"] = config.callEvent;
+			this["detachEvent"] = config.detachEvent;
+			this["hasEvent"] = config.hasEvent;
+			this["mapEvent"] = config.mapEvent;
+			this["unblockEvent"] = config.unblockEvent;
+		} else {
+            this._services = {};
+            webix.extend(this, webix.EventSystem);
+        }
 	}
 
 	getService(name: string) {

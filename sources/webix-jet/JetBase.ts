@@ -5,6 +5,7 @@ import { IJetApp, IJetURL, IJetView,
 export abstract class JetBase implements IJetView{
 	public app: IJetApp;
 	public webixJet = true;
+	public rootApp: IJetApp;
 	protected _parent: IJetView;
 	protected _index: number;
 	protected _container: HTMLElement | webix.ui.baseview;

@@ -1,9 +1,8 @@
 {
   "compilerOptions": {
+    "module": "esNext",
     "moduleResolution": "node",
-    "module": "esnext",
     "target": "es6",
-    "lib": ["es2015", "dom"],
     "sourceMap": true,
     "importHelpers": true,
     "baseUrl": ".",
@@ -13,11 +12,9 @@
     }
   },
   "include": [
-    "sources/**/*.ts",
-    "tests/**/*.ts"
+    "sources/**/*.ts"
   ],
   "files": [
-    "local_modules/webix/webix.d.ts",
-    "local_modules/amf/amf.d.ts"
+    "local_modules/webix/webix.d.ts"
   ]
 }
