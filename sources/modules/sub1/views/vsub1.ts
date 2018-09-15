@@ -2,8 +2,8 @@ import {JetView} from "@webix-jet/JetView";
 
 export default class level1 extends JetView {
     private _cells: any[] = [
-        { header: "Level 2a", route: "level2a?id=1" },
-        { header: "Level 2b", route: "level2b?id=2" }
+        { header: "Sub 2a", route: "sub2a?id=2a" },
+        { header: "Sub 2b", route: "sub2b?id=2b" }
     ];
 
     getCellHeaders() {
@@ -25,9 +25,9 @@ export default class level1 extends JetView {
     }
 
     config() {
-        return { type: "line", id: "level1",
+        return { type: "line", id: "sub1",
             rows: [
-                { template: "level 1", height: 40 },
+                { template: "sub 1", height: 40 },
                 {
                     cols: [
                         { view: "list", data: this.getCellHeaders(), width: 200, select: true, scroll: false,

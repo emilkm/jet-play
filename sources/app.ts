@@ -11,7 +11,7 @@ export default class App extends JetApp {
 			version : VERSION,
 			router 	: BUILD_AS_MODULE ? EmptyRouter : HashRouter,
 			debug 	: !PRODUCTION,
-			start 	: "/top/level1",
+			start 	: "/top/sub1",
             views	: views.resolveviews
 		};
 
