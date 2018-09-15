@@ -325,11 +325,10 @@ export class JetApp extends JetBase implements IJetApp {
 		return this.canNavigate(strUrl).then(newurl => {
 			if (newurl !== null){
 				this.$router.set(newurl, { silent:true });
-				return this._render_stage(newurl);
+				return this._render_stage(this.$router.get());
 			}
 			return null;
-		});
-	}
+		});	}
 
 	protected _render_stage(url): Promise<IJetView>{
 		const parsed = (typeof url === "string") ? parse(url) : url;

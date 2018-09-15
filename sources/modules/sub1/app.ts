@@ -1,16 +1,17 @@
-import { JetApp, SubappRouter } from "@webix-jet/index";
+import { JetApp, SubRouter } from "@webix-jet/index";
 
 declare var require, APPNAME, VERSION, PRODUCTION, BUILD_AS_MODULE;
 
 export default class App extends JetApp {
-	constructor(config = {}) {
+	constructor(config = {}, name = "") {
 		const defaults = {
+            debug 	: !PRODUCTION,
 			id 		: "level1",
 			version : VERSION,
-			router 	: SubappRouter,
-			debug 	: !PRODUCTION,
-			start 	: "/level1?id=1",
-            root	: "/top",
+			start 	: "/level2a", //sub app must start with a view
+            router 	: SubRouter,
+            parentRouter: (config as JetApp).getRouter(),
+            routerPrefix: "/" + name,
 			rootevs : true,
             views   : (v) => require("modules/level1/views/" + v)
         };

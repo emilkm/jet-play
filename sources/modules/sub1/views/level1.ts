@@ -2,8 +2,8 @@ import {JetView} from "@webix-jet/JetView";
 
 export default class level1 extends JetView {
     private _cells: any[] = [
-        { header: "Level 2a", route: "level2a?id=2a" },
-        { header: "Level 2b", route: "level2b?id=2b" }
+        { header: "Level 2a", route: "level2a?id=1" },
+        { header: "Level 2b", route: "level2b?id=2" }
     ];
 
     getCellHeaders() {
