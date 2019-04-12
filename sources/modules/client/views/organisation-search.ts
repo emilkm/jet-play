@@ -1,13 +1,13 @@
 import {JetView} from "@webix-jet/JetView";
 
-export default class level2 extends JetView {
+export default class OrganisationSearch extends JetView {
     config() {
-        return { type: "line", id: "level2",
+        return { type: "line",
             rows: [
-                { template: "level 2a", height: 40 },
+               { template: "Organisation Search", height: 40 },
                 { padding: 5,
                     rows: [
-                        { template: "aaa" }
+                        { template: "organisation search result ..." }
                     ]
                 }
             ]

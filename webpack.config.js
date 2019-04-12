@@ -60,7 +60,8 @@ module.exports = function(env) {
                 "jet-views": path.resolve(__dirname, "sources/views"),
                 "jet-locales": path.resolve(__dirname, "sources/locales"),
                 "@root": path.resolve(__dirname, "sources"),
-                "@webix-jet": path.resolve(__dirname, "sources/webix-jet")
+                "@webix-jet": path.resolve(__dirname, "sources/webix-jet"),
+                "@modules": path.resolve(__dirname, "sources/modules")
             }
         },
         plugins: [

@@ -8,13 +8,14 @@
     "baseUrl": ".",
     "paths": {
       "@root/*": ["sources/*"],
-      "@webix-jet/*": ["sources/webix-jet/*"]
+      "@webix-jet/*": ["sources/webix-jet/*"],
+      "@modules/*": ["sources/modules/*"]
     }
   },
   "include": [
     "sources/**/*.ts"
   ],
   "files": [
-    "local_modules/webix/webix.d.ts"
+    "node_modules/webix/types/webix.global.d.ts"
   ]
 }

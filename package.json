@@ -21,13 +21,12 @@
     "ts-loader": "^5.0.0",
     "typescript": "^3.0.3",
     "url-loader": "^0.5.9",
-    "webpack": "^4.17.2",
-    "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.7"
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.3.1"
   },
   "dependencies": {
-    "webix": "^5.4.0",
-    "webix-polyglot": "^2.3.0",
-    "webix-routie": "^0.4.0"
+    "webix": "^6.2.1",
+    "webix-polyglot": "^2.3.0"
   }
 }

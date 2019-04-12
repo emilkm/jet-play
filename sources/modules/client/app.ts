@@ -6,14 +6,14 @@ export default class App extends JetApp {
 	constructor(config = {}, name = "") {
 		const defaults = {
             debug 	: !PRODUCTION,
-			id 		: "sub1v",
+			id 		: "client",
 			version : VERSION,
-			start 	: "/vsub1?id=1/sub2a?id=2a",
+			start 	: "/client/index",
             router 	: SubRouter,
             parentRouter: (config as JetApp).getRouter(),
             routerPrefix: "/" + name,
 			rootevs : true,
-            views   : (v) => require("modules/sub1/views/" + v)
+            views   : (v) => require("@modules/client/views/" + v)
         };
 
 		super({ ...defaults, ...config });
