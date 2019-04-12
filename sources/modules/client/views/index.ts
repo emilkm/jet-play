@@ -11,12 +11,12 @@ export default class Client extends JetView {
                         {},
                         { view: "button", value: "Person Search", width: 160,
                             click: () => {
-                                this.show("/index/person-search");
+                                this.show("person-search");
                             }
                         },
                         { view: "button", value: "Organisation Search", width: 160,
                             click: () => {
-                                this.show("/index/organisation-search");
+                                this.show("organisation-search");
                             }
                         }
                     ]
