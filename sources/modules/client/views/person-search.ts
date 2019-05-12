@@ -1,4 +1,4 @@
-import {JetView} from "@webix-jet/JetView";
+import {JetView} from "webix-jet";
 
 export default class PersonSearch extends JetView {
     config() {
@@ -12,6 +12,10 @@ export default class PersonSearch extends JetView {
                 }
             ]
         };
+    }
+
+    init(){
+        this.app.callEvent("TitleChange", ["Person search"]);
     }
 
     urlChange(view, url){

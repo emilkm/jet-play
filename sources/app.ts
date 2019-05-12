@@ -1,5 +1,5 @@
 import "./styles/app.css";
-import { JetApp, EmptyRouter, HashRouter } from "@webix-jet/index";
+import { JetApp, EmptyRouter, HashRouter } from "webix-jet";
 import views from "@root/views";
 
 declare var APPNAME, VERSION, PRODUCTION, BUILD_AS_MODULE;

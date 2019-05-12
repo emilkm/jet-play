@@ -1,4 +1,4 @@
-import {JetView} from "@webix-jet/JetView";
+import {JetView} from "webix-jet";
 
 export default class Client extends JetView {
 

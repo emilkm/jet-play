@@ -1,4 +1,4 @@
-import {JetView} from "@webix-jet/JetView";
+import {JetView} from "webix-jet";
 
 export default class OrganisationSearch extends JetView {
     config() {
@@ -12,6 +12,10 @@ export default class OrganisationSearch extends JetView {
                 }
             ]
         };
+    }
+
+    init(){
+        this.app.callEvent("TitleChange", ["Org search"]);
     }
 
     urlChange(view, url){

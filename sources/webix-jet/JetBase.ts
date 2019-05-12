@@ -6,7 +6,6 @@ export abstract class JetBase implements IJetView{
 	public webix: IWebixFacade;
 	public webixJet = true;
 
-    public rootApp: IJetApp;
 	protected _name: string;
 	protected _parent: IJetView;
 	protected _container: HTMLElement | ISubView;

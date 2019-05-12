@@ -1,10 +1,10 @@
-import {JetView} from "@webix-jet/JetView";
+import {JetView} from "webix-jet";
 
 export default class TopView extends JetView {
 	config() {
-		return { type: "line", id: "top",
+		return { type: "line",
             rows: [
-				{ template: "top", height: 40 },
+				{ type:"header", css:"webix_dark", template: "top", localId: "top" },
 				{ padding: 5,
                     rows: [
                     	{ $subview: true }
@@ -12,5 +12,11 @@ export default class TopView extends JetView {
 				}
 			]
 		};
+	}
+
+	init(){
+		this.on(this.app, "TitleChange", (name) => {
+			(this.$$("top") as webix.ui.template).setHTML(name);
+		})
 	}
 }

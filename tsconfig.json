@@ -8,7 +8,6 @@
     "baseUrl": ".",
     "paths": {
       "@root/*": ["sources/*"],
-      "@webix-jet/*": ["sources/webix-jet/*"],
       "@modules/*": ["sources/modules/*"]
     }
   },

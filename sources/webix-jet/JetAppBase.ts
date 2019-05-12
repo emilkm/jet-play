@@ -40,18 +40,18 @@ export class JetAppBase extends JetBase implements IJetView {
 		this.ready = Promise.resolve();
 
 		if (config.rootevs) {
-			this._services = config._services;
-			this._events = config._events;
-			this["_evs_events"] = config._evs_events;
-			this["evs_handlers"] = config._evs_handlers;
-			this["_evs_map"] = config._evs_map;
-			this["attachEvent"] = config.attachEvent;
-			this["blockEvent"] = config.blockEvent;
-			this["callEvent"] = config.callEvent;
-			this["detachEvent"] = config.detachEvent;
-			this["hasEvent"] = config.hasEvent;
-			this["mapEvent"] = config.mapEvent;
-			this["unblockEvent"] = config.unblockEvent;
+			this._services = config.app._services;
+			this._events = config.app._events;
+			this["_evs_events"] = config.app._evs_events;
+			this["evs_handlers"] = config.app._evs_handlers;
+			this["_evs_map"] = config.app._evs_map;
+			this["attachEvent"] = config.app.attachEvent;
+			this["blockEvent"] = config.app.blockEvent;
+			this["callEvent"] = config.app.callEvent;
+			this["detachEvent"] = config.app.detachEvent;
+			this["hasEvent"] = config.app.hasEvent;
+			this["mapEvent"] = config.app.mapEvent;
+			this["unblockEvent"] = config.app.unblockEvent;
 		} else {
 			this._services = {};
 			this.webix.extend(this, this.webix.EventSystem);
