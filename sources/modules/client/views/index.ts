@@ -25,19 +25,5 @@ export default class Client extends JetView {
             ]
         };
     }
-
-    init(view, url) {
-
-    }
-
-    destroy() {
-        let x = 1;
-    }
-
-    urlChange(view, url){
-        if (url[0].params.id){
-            console.log(url[0].params.id);
-        }
-    }
 }
 

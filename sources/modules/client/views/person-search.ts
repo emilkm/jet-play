@@ -7,6 +7,11 @@ export default class PersonSearch extends JetView {
                 { template: "Person Search", height: 40 },
                 { padding: 5,
                     rows: [
+                        { view: "button", value: "Person View", width: 160,
+                            click: () => {
+                                this.show("person");
+                            }
+                        },
                         { template: "person search result ..." }
                     ]
                 }
@@ -16,11 +21,5 @@ export default class PersonSearch extends JetView {
 
     init(){
         this.app.callEvent("TitleChange", ["Person search"]);
-    }
-
-    urlChange(view, url){
-        if (url[0].params.id){
-            console.log(url[0].params.id);
-        }
     }
 }
