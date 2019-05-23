@@ -35,22 +35,18 @@ export default class PersonDetail extends JetView {
 
     init(view, url) {
         console.log("person-detail.init()");
-        const self = this;
-
     }
 
     ready(view, url) {
         console.log("person-detail.ready() bind the form");
-        const self = this;
 
         const dc = this.app.getService("dataset");
         const frm: any = this.$$("person:detail:form");
         frm.bind(dc);
-
     }
 
     destroy() {
-        console.log("person-detail.destroy()");
+        console.log("person-detail.destroy() unbind the form");
         const frm: any = this.$$("person:detail:form");
         //unbind here will do nothing because this._bind_source == null (webix calls unbind as it destroys views internally)
         frm.unbind();

@@ -66,6 +66,6 @@ export default class Person extends JetView {
     }
 
     destroy() {
-        console.log("person.destroy()");
+        console.log("person.destroy() unbinds children internally");
     }
 }
