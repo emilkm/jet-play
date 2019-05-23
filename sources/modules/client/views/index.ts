@@ -25,5 +25,14 @@ export default class Client extends JetView {
             ]
         };
     }
+
+    init(view, url) {
+        console.log("client-index.init()");
+
+        const dc: any = this.app.getService("dataset");
+        if (!dc) {
+            this.app.setService("dataset",  new webix.DataCollection());
+        }
+    }
 }
 

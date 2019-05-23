@@ -13,6 +13,6 @@ export default class PersonExtra extends JetView {
     }
 
     ready(view, url){
-        console.log('PersonExtra JetView ready');
+        console.log("person-extra.ready()");
     }
 }

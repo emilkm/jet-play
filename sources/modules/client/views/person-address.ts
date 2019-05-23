@@ -12,7 +12,15 @@ export default class PersonAddress extends JetView {
         };
     }
 
-    ready(view, url){
-        console.log('PersonAddress JetView ready');
+    init(view, url) {
+        console.log("person-address.init()");
+    }
+
+    ready(view, url) {
+        console.log("person-address.ready()");
+    }
+
+    destroy() {
+        console.log("person-address.destroy()");
     }
 }
