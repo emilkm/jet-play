@@ -44,6 +44,16 @@ destructor(){
 }
 ```
 
+
+## Issue 2: Are JetApp instances destroyed properly? ##
+
+Just starting to look at this one, and noticing that there are things left behind that I expect to be destroyed.
+Could be faulty process on my part. Further investigation required.
+
+JetApp instances seem to grow with every switch. In my dev project instances of other views and data objects related to should be destroyed apps continue to multiply.
+
+Will flesh out the example once issue 1 is resolved.  
+
 ### Update 1: ###
 
 I have updated the names of the main views so filtering on "jet" will order things nicely.
@@ -55,17 +65,7 @@ I have updated the names of the main views so filtering on "jet" will order thin
 
 ![](images/05.png)
 
-(Will update with more screenshots and counts.)
-
-
-## Issue 2: Are JetApp instances destroyed properly? ##
-
-Just starting to look at this one, and noticing that there are things left behind that I expect to be destroyed.
-Could be faulty process on my part. Further investigation required.
-
-JetApp instances seem to grow with every switch. In my dev project instances of other views and data objects related to should be destroyed apps continue to multiply.
-
-Will flesh out the example once issue 1 is resolved.  
+Possibly something is pinning the apps in my work project, as this so far look ok. Will continue adding tests and information.
 
 
 ## Issue 3: Navigation between modules is a bit inconvenient ##
