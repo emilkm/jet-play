@@ -2,8 +2,8 @@ import { JetApp, SubRouter } from "webix-jet";
 
 declare var require, APPNAME, VERSION, PRODUCTION, BUILD_AS_MODULE;
 
-export default class AppJetApp extends JetApp {
-	public root:JetApp;
+export default class JetAppClient extends JetApp {
+	public root: JetApp;
 
 	constructor(config:any = {}) {
 		const defaults = {
@@ -16,12 +16,6 @@ export default class AppJetApp extends JetApp {
 
 		super({ ...defaults, ...config });
  
-		const root = config.app as JetApp;
-		// link services
-		// this.setService("user", root.getService("user"));
-
-		// map events
-		this.on("TitleChange", (t) => root.callEvent("TitleChange", [t]));
-		
+		this.root = config.app as JetApp;
 	}
 }

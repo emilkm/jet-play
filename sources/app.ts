@@ -4,7 +4,7 @@ import views from "@root/views";
 
 declare var APPNAME, VERSION, PRODUCTION, BUILD_AS_MODULE;
 
-export default class App extends JetApp {
+export default class JetAppRoot extends JetApp {
 	constructor(config = {}) {
 		const defaults = {
 			id 		: APPNAME,
@@ -21,7 +21,7 @@ export default class App extends JetApp {
 
 if (!BUILD_AS_MODULE){
     webix.ready(() => {
-        let app = new App();
+        let app = new JetAppRoot();
         app.render();
     });
 }
