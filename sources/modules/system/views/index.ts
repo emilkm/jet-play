@@ -1,13 +1,13 @@
 import {JetView} from "webix-jet";
 
-export default class ClientJetView extends JetView {
+export default class SystemJetView extends JetView {
 
     config() {
         return {
             rows: [
                 {
                     cols: [
-                        { template: "Client module index", height: 40 },
+                        { template: "System module index", height: 40 },
                         {}
                     ]
                 }
@@ -16,7 +16,7 @@ export default class ClientJetView extends JetView {
     }
 
     init(view, url) {
-        console.log("client-index.init()");
+        
     }
 }
 
