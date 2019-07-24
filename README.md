@@ -67,6 +67,20 @@ I have updated the names of the main views so filtering on "jet" will order thin
 
 Possibly something is pinning the apps in my work project, as this so far look ok. Will continue adding tests and information.
 
+### Update 2: Popup created via this.ui() pin the view and accumulate ###
+
+Custom menus created via this.ui() need not be destroyed, https://webix.gitbook.io/webix-jet/part-ii-webix-jet-in-details/popups-and-windows#adding-a-context-menu
+
+However, this does does not seem true for pupup windows
+https://webix.gitbook.io/webix-jet/part-ii-webix-jet-in-details/popups-and-windows#windows-as-jet-view-classes
+
+Switching back and forth between **client** and **system** sub-app makes the popup view grow. I did garbage collection, but that did not change anything. 
+
+![](images/06.png)
+
+
+I will try destorying it myself. Possibly webix-jet docs and example need update. Happy to contribute, small bits, via pull requests.
+
 
 ## Issue 3: Navigation between modules is a bit inconvenient ##
 

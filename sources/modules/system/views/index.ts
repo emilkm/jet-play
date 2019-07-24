@@ -1,6 +1,8 @@
 import {JetView} from "webix-jet";
+import JetViewPopup from "@root/views/pop";
 
 export default class JetViewSystem extends JetView {
+    private pop: JetViewPopup;
 
     config() {
         return {
@@ -22,13 +24,18 @@ export default class JetViewSystem extends JetView {
                         root.show("/top/client");
                     }
                 },
+                { view: "button", value: "Popup", width: 300,
+                    click: () => {
+                        this.pop.showPopup(null, "", "Title");
+                    }
+                },
                 {}
             ]
         };
     }
 
     init(view, url) {
-        
+        this.pop = this.ui(JetViewPopup) as JetViewPopup;
     }
 }
 
