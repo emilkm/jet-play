@@ -1,8 +1,8 @@
 import {JetView} from "webix-jet";
-import JetViewPopup from "@root/views/pop";
+import JetViewWindow from "@root/views/win";
 
 export default class JetViewSystem extends JetView {
-    private pop: JetViewPopup;
+    public pop: JetViewWindow;
 
     config() {
         return {
@@ -26,7 +26,7 @@ export default class JetViewSystem extends JetView {
                 },
                 { view: "button", value: "Popup", width: 300,
                     click: () => {
-                        this.pop.showPopup(null, "", "Title");
+                        this.pop.showPopup();
                     }
                 },
                 {}
@@ -35,7 +35,12 @@ export default class JetViewSystem extends JetView {
     }
 
     init(view, url) {
-        this.pop = this.ui(JetViewPopup) as JetViewPopup;
+        this.pop = this.ui(JetViewWindow) as JetViewWindow;
+    }
+
+    destroy() {
+        //this.pop.destroy();
+        //this.pop = null;
     }
 }
 

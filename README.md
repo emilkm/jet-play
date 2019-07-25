@@ -79,7 +79,10 @@ Switching back and forth between **client** and **system** sub-app makes the pop
 ![](images/06.png)
 
 
-I will try destorying it myself. Possibly webix-jet docs and example need update. Happy to contribute, small bits, via pull requests.
+Pop returns a promise. So I simplified the popup (win.ts) to eliminate the popup code as the reason, as much as possible. Issue persists.
+
+
+![](images/07.png)
 
 
 ## Issue 3: Navigation between modules is a bit inconvenient ##

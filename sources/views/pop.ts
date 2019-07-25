@@ -39,8 +39,6 @@ export default class JetViewPopup extends JetView {
     }
 
     config() {
-        const self = this;
-
         return {
             view: "window", position: "center", modal: true, close: true, move: true, resize: true, width: 300, height: 200,
             head: "Note Editor",
@@ -59,7 +57,10 @@ export default class JetViewPopup extends JetView {
                 ]
             },
             on: {
-                onHide: () => this._promise.reject()
+                onHide: () => {
+                    this._promise.reject();
+                    this._promise = null;
+                }
             }
         }
     }
@@ -73,7 +74,8 @@ export default class JetViewPopup extends JetView {
     }
 
     destroy() {
-
+        this._note = null;
+        this._promise = null;
     }
 
     save() {
