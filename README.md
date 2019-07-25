@@ -95,12 +95,12 @@ export default class JetAppClient extends JetApp {
 
 	constructor(config:any = {}) {
 		const defaults = {
-            debug 	: !PRODUCTION,
+			debug 	: !PRODUCTION,
 			id 		: "client",
 			version : VERSION,
 			start 	: "/index",
-            views   : (v) => require("@modules/client/views/" + v)
-        };
+			views 	: (v) => require("@modules/client/views/" + v)
+		};
 
 		super({ ...defaults, ...config });
 	}
