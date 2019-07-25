@@ -87,27 +87,6 @@ Pop returns a promise. So I simplified the popup (win.ts) to eliminate the popup
 
 ## Issue 3: Navigation between modules is a bit inconvenient ##
 
-When working with sub-apps, I find it useful to have a handle for the root app. This is currently done for each app as follows.
-
-```
-export default class JetAppClient extends JetApp {
-	public root: JetApp;
-
-	constructor(config:any = {}) {
-		const defaults = {
-			debug 	: !PRODUCTION,
-			id 		: "client",
-			version : VERSION,
-			start 	: "/index",
-			views 	: (v) => require("@modules/client/views/" + v)
-		};
-
-		super({ ...defaults, ...config });
-	}
-}
-```
-
-It works like that, but I find it more convenient for the JetApp to have a **getRootApp** methods so I can get to root app easily.
 
 ```
 export default class JetViewClient extends JetView {
@@ -130,7 +109,7 @@ export default class JetViewClient extends JetView {
                         },
                         { view: "button", value: "Client via root app show()", width: 300,
                             click: () => {
-                                let root: any = this.app["root"];
+                                let root: any = this.app.app;
                                 root.show("/top/system");
                             }
                         }
@@ -153,5 +132,26 @@ For example
 * this.show("#!/top/system"); // fails as path is appended (not sure if #! should indicate to replace path)
 * root.show("/top/system"); // works
 
-Also experiencing differences (in dev project not replicated here yet) when I navigate via root.app and top top view (from menu). (Will work on replicating here.) 
+I have added a convenience method to JetAppBase for getting the root app.
+
+```
+getRootApp(){
+	let app:IJetApp = this.app;
+	while (app.app) {
+		app = app.app;
+	}
+	return app;
+}
+```
+
+and JetBase
+
+```
+getRootApp(): IJetApp {
+	return this.app.getRootApp();
+}
+```
+
+I doubt I would ever use more than one level of sub-app, but it would save me typing this.app.app.app :)
+
 
