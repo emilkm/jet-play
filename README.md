@@ -152,6 +152,6 @@ getRootApp(): IJetApp {
 }
 ```
 
-I doubt I would ever use more than one level of sub-app, but it would save me typing this.app.app.app :)
+I doubt I would ever use more than one level of sub-app, but it would save me having to type this.app.app.app, if I ever did :)
 
 
