@@ -16,9 +16,9 @@ export default class JetViewClient extends JetView {
                         this.show("#!/top/system");
                     }
                 },
-                { view: "button", value: "Client via root app show()", width: 300,
+                { view: "button", value: "System via root app show()", width: 300,
                     click: () => {
-                        let root: any = this.app["root"];
+                        let root: any = this.app.app;
                         root.show("/top/system");
                     }
                 },

@@ -20,7 +20,7 @@ export default class JetViewSystem extends JetView {
                 },
                 { view: "button", value: "Client via root app show()", width: 300,
                     click: () => {
-                        let root: any = this.app["root"];
+                        let root: any = this.app.app;
                         root.show("/top/client");
                     }
                 },
