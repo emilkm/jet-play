@@ -18,11 +18,11 @@ Load app with /top/client/index by default
 
 ![](images/01.png)
 
-Switch to /top/system/index
+Switch to /top/system/index via address bar URL change
 
 ![](images/02.png)
 
-Switch to /top/client/index
+Switch to /top/client/index via address bar URL change
 
 ![](images/03.png)
 
@@ -103,13 +103,11 @@ export default class JetAppClient extends JetApp {
         };
 
 		super({ ...defaults, ...config });
- 
-		this.root = config.app as JetApp;
 	}
 }
 ```
 
-It works like that, but I find it more convenient for the JetApp to have **root** field defined so I can use it from TypeScript without extra typing.
+It works like that, but I find it more convenient for the JetApp to have a **getRootApp** methods so I can get to root app easily.
 
 ```
 export default class JetViewClient extends JetView {
