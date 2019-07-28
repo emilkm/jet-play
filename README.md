@@ -2,7 +2,7 @@ jet-play
 =====
 
 
-Branch **b4** illustrates the current problem in switching between sub-apps
+Branch **b4** memory leak in login form with **password** field.
 
 The structure is a main app with sub-apps/modules (webpack chunks) that live in the *modules/<modulename>* folder.
 
@@ -11,147 +11,18 @@ Two sub-apps
 * system
 
 
-## Issue 1: JetView.destructor this._root is undefined and cannot execute this._root.destructor() ##
+## Issue 1: JetView is retained in memory after destruction, due to password field. ##
 
 
-Load app with /top/client/index by default
+After a fairly good chase, I think I have find one culprit. In a simplified two module app, with login page, the login page is retained when the form has a password field.
+
+At login page.
 
 ![](images/01.png)
 
-Switch to /top/system/index via address bar URL change
+After login
 
 ![](images/02.png)
 
-Switch to /top/client/index via address bar URL change
-
-![](images/03.png)
-
-
-The following code works around the issue. Not sure why this._root is undefined.
-
-```
-destructor(){
-	this.destroy();
-	this._destroyKids();
-
-	// destroy actual UI
-	if (!this._root) {
-		console.log("JetView.destructor() this._root is undefined and cannot execute this._root.destructor()")
-	} else {
-		this._root.destructor();
-	}
-	super.destructor();
-}
-```
-
-
-## Issue 2: Are JetApp instances destroyed properly? ##
-
-Just starting to look at this one, and noticing that there are things left behind that I expect to be destroyed.
-Could be faulty process on my part. Further investigation required.
-
-JetApp instances seem to grow with every switch. In my dev project instances of other views and data objects related to should be destroyed apps continue to multiply.
-
-Will flesh out the example once issue 1 is resolved.  
-
-### Update 1: ###
-
-I have updated the names of the main views so filtering on "jet" will order things nicely.
-
-* JetApp instances stay at 3. (This must be expected.) 
-* The views are destroyed. 
-
-![](images/04.png)
-
-![](images/05.png)
-
-Possibly something is pinning the apps in my work project, as this so far look ok. Will continue adding tests and information.
-
-### Update 2: Popup created via this.ui() pin the view and accumulate ###
-
-Custom menus created via this.ui() need not be destroyed, https://webix.gitbook.io/webix-jet/part-ii-webix-jet-in-details/popups-and-windows#adding-a-context-menu
-
-However, this does does not seem true for pupup windows
-https://webix.gitbook.io/webix-jet/part-ii-webix-jet-in-details/popups-and-windows#windows-as-jet-view-classes
-
-Switching back and forth between **client** and **system** sub-app makes the popup view grow. I did garbage collection, but that did not change anything. 
-
-![](images/06.png)
-
-
-Pop returns a promise. So I simplified the popup (win.ts) to eliminate the popup code as the reason, as much as possible. Issue persists.
-
-
-![](images/07.png)
-
-
-## Issue 3: Navigation between modules is a bit inconvenient ##
-
-
-```
-export default class JetViewClient extends JetView {
-
-    config() {
-        return {
-            rows: [
-                { template: "Client module index", height: 40 },
-                {
-                    cols: [
-                        { view: "button", value: "System via this app show()", width: 300,
-                            click: () => {
-                                this.show("/top/system");
-                            }
-                        },
-                        { view: "button", value: "System via this app show() #!", width: 300,
-                            click: () => {
-                                this.show("#!/top/system");
-                            }
-                        },
-                        { view: "button", value: "Client via root app show()", width: 300,
-                            click: () => {
-                                let root: any = this.app.app;
-                                root.show("/top/system");
-                            }
-                        }
-                    ]
-                },
-                {}
-            ]
-        };
-    }
-
-    init(view, url) {
-        console.log("client-index.init()");
-    }
-}
-```
-
-For example
-
-* this.show("/top/system"); //fails with module not found (as expected)
-* this.show("#!/top/system"); // fails as path is appended (not sure if #! should indicate to replace path)
-* root.show("/top/system"); // works
-
-I have added a convenience method to JetAppBase for getting the root app.
-
-```
-getRootApp(){
-	let app:IJetApp = this.app;
-	while (app.app) {
-		app = app.app;
-	}
-	return app;
-}
-```
-
-and JetBase
-
-```
-getRootApp(): IJetApp {
-	return this.app.getRootApp();
-}
-```
-
-I doubt I would ever use more than one level of sub-app, but it would save me having to type this.app.app.app, if I ever did :)
 
 

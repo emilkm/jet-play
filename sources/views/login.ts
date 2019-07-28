@@ -7,6 +7,8 @@ export default class JetViewLogin extends JetView {
             width:400, borderless:false, margin:10,
             rows:[
                 { type:"header", template: this.app.config.name },
+                { view:"text", id:"txtUsername", name:"login", label:"User Name", labelPosition:"top" },
+                { view:"text", id:"txtPassword", type:"password", name:"pass", label:"Password", labelPosition:"top" },
                 { view:"button", value:"Login", click:() => this.do_login(), hotkey:"enter" }
             ]
         };
