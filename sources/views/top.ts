@@ -6,8 +6,8 @@ export default class JetViewTop extends JetView {
             rows: [
 				{ type: "header", css: "webix_dark", template: "top", localId: "top" },
 				{ view: "menu", localId: "menu", data: [
-						{ id: "client", value: "Client" },
-						{ id: "system", value: "System" }
+						{ id: "module1", value: "Module1" },
+						{ id: "module2", value: "Module2" }
 					],
 					on: {
 						onItemClick: (id, e) => {
@@ -24,7 +24,7 @@ export default class JetViewTop extends JetView {
 		};
 	}
 
-	init(){
+	init() {
 		this.use(plugins.Menu, "menu");
 	}
 }

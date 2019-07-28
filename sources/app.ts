@@ -1,5 +1,6 @@
-import { JetApp, HashRouter } from "webix-jet";
+import { JetApp, HashRouter, plugins } from "webix-jet";
 import views from "@root/views";
+import session from "@root/models/session";
 
 declare var APPNAME, VERSION, PRODUCTION;
 
@@ -15,6 +16,8 @@ export default class JetAppRoot extends JetApp {
 		};
 
 		super({ ...defaults, ...config });
+
+		this.use(plugins.User, { model: session, afterLogin: "/top/module1" });
 	}
 }
 

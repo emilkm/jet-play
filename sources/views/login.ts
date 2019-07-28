@@ -1,40 +1,38 @@
-import {JetView, plugins} from "webix-jet";
+import {JetView} from "webix-jet";
 
 export default class JetViewLogin extends JetView {
-
-    config() {
-        const self = this;
+    config(){
+        const login_form = {
+            view:"form", localId:"login:form",
+            width:400, borderless:false, margin:10,
+            rows:[
+                { type:"header", template: this.app.config.name },
+                { view:"button", value:"Login", click:() => this.do_login(), hotkey:"enter" }
+            ]
+        };
 
         return {
-            rows: [
-                { view: "button", value: "Login", width: 300,
-                    click: () => {
-                        this.app.show("/top/module1");
-                    }
-                },
-                {}
-            ]
+            cols:[{}, { rows:[{}, login_form, {}]}, {}]
         };
     }
 
-    init(view, url) {
-        const self = this;
-
-    }
-
-    ready(view, url) {
+    init(view) {
 
     }
 
     destroy() {
-        console.log("JetViewLogin.destroy()");
+        console.log("JetViewLogin.destroy()")
     }
 
-    urlChange(view, url){
+    do_login(){
+        const user = this.app.getService("user");
+        const form: any = this.$$("login:form");
 
-    }
-
-    reset() {
-
+        if (form.validate()){
+            const data = form.getValues();
+            user.login().catch(function() {
+                webix.alert("login error");
+            });
+        }
     }
 }
