@@ -1,17 +1,16 @@
-import "./styles/app.css";
-import { JetApp, EmptyRouter, HashRouter } from "webix-jet";
+import { JetApp, HashRouter } from "webix-jet";
 import views from "@root/views";
 
-declare var APPNAME, VERSION, PRODUCTION, BUILD_AS_MODULE;
+declare var APPNAME, VERSION, PRODUCTION;
 
 export default class JetAppRoot extends JetApp {
 	constructor(config = {}) {
 		const defaults = {
 			id 		: APPNAME,
 			version : VERSION,
-			router 	: BUILD_AS_MODULE ? EmptyRouter : HashRouter,
+			router 	: HashRouter,
 			debug 	: !PRODUCTION,
-			start 	: "/top/client",
+			start 	: "/top/login",
             views	: views.resolveviews
 		};
 
@@ -19,10 +18,8 @@ export default class JetAppRoot extends JetApp {
 	}
 }
 
-if (!BUILD_AS_MODULE){
-    webix.ready(() => {
-        let app = new JetAppRoot();
-        app.render();
-    });
-}
+webix.ready(() => {
+	let app = new JetAppRoot();
+	app.render();
+});
 

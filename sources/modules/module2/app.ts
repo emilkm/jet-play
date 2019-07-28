@@ -1,15 +1,15 @@
 import { JetApp, SubRouter } from "webix-jet";
 
-declare var require, APPNAME, VERSION, PRODUCTION, BUILD_AS_MODULE;
+declare var require, APPNAME, VERSION, PRODUCTION;
 
-export default class JetAppSystem extends JetApp {
+export default class JetAppModule2 extends JetApp {
 	constructor(config:any = {}) {
 		const defaults = {
             debug 	: !PRODUCTION,
-			id 		: "system",
+			id 		: "module2",
 			version : VERSION,
 			start 	: "/index",
-            views   : (v) => require("@modules/system/views/" + v)
+            views : (v) => require("modules/module2/views/" + v)
         };
 
 		super({ ...defaults, ...config });

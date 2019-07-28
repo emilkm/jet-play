@@ -17,4 +17,8 @@ export default class JetViewWindow extends JetView {
             body: "body"
         };
     }
+
+    destroy() {
+        console.log("JetViewWindow.destroy()")
+    }
 }
