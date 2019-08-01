@@ -2,13 +2,13 @@ jet-play
 =====
 
 
-Branch **b4** memory leak in login form with **password** field.
+Branch **b5** memory leak related issues.
 
 The structure is a main app with sub-apps/modules (webpack chunks) that live in the *modules/<modulename>* folder.
 
 Two sub-apps
-* client
-* system
+* mogule1
+* module2
 
 
 
