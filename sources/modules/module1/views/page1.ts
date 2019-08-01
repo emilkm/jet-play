@@ -18,11 +18,12 @@ export default class JetViewModule1Page1 extends JetView {
 
     }
 
+    urlChange(view, url){
+
+    }
+
     destroy() {
         console.log("JetViewModule1Page1.destroy()");
     }
 
-    urlChange(view, url){
-
-    }
 }
