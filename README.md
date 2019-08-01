@@ -11,6 +11,23 @@ Two sub-apps
 * system
 
 
+
+## Issue 2: JetView is retained in memory after destruction, when combo item selected "
+
+To replicate:
+1. Start the app
+2. Navigate to module 2 /#!/top/module2/index/page1
+3. Select an item from the combo
+4. Navigate to module 1
+
+
+![](images/03.png)
+
+
+----------
+# Resolved #
+
+
 ## Issue 1: JetView is retained in memory after destruction, due to password field. ##
 
 > Maksim: This one is most probably caused by the bug in the Chrome https://bugs.chromium.org/p/chromium/issues/detail?id=967438
