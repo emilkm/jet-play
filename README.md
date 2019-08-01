@@ -11,39 +11,6 @@ Two sub-apps
 * system
 
 
-## Issue 1: JetView.destructor this._root is undefined and cannot execute this._root.destructor() ##
-
-
-Load app with /top/client/index by default
-
-![](images/01.png)
-
-Switch to /top/system/index via address bar URL change
-
-![](images/02.png)
-
-Switch to /top/client/index via address bar URL change
-
-![](images/03.png)
-
-
-The following code works around the issue. Not sure why this._root is undefined.
-
-```
-destructor(){
-	this.destroy();
-	this._destroyKids();
-
-	// destroy actual UI
-	if (!this._root) {
-		console.log("JetView.destructor() this._root is undefined and cannot execute this._root.destructor()")
-	} else {
-		this._root.destructor();
-	}
-	super.destructor();
-}
-```
-
 
 ## Issue 2: Are JetApp instances destroyed properly? ##
 
@@ -85,73 +52,6 @@ Pop returns a promise. So I simplified the popup (win.ts) to eliminate the popup
 ![](images/07.png)
 
 
-## Issue 3: Navigation between modules is a bit inconvenient ##
 
-
-```
-export default class JetViewClient extends JetView {
-
-    config() {
-        return {
-            rows: [
-                { template: "Client module index", height: 40 },
-                {
-                    cols: [
-                        { view: "button", value: "System via this app show()", width: 300,
-                            click: () => {
-                                this.show("/top/system");
-                            }
-                        },
-                        { view: "button", value: "System via this app show() #!", width: 300,
-                            click: () => {
-                                this.show("#!/top/system");
-                            }
-                        },
-                        { view: "button", value: "Client via root app show()", width: 300,
-                            click: () => {
-                                let root: any = this.app.app;
-                                root.show("/top/system");
-                            }
-                        }
-                    ]
-                },
-                {}
-            ]
-        };
-    }
-
-    init(view, url) {
-        console.log("client-index.init()");
-    }
-}
-```
-
-For example
-
-* this.show("/top/system"); //fails with module not found (as expected)
-* this.show("#!/top/system"); // fails as path is appended (not sure if #! should indicate to replace path)
-* root.show("/top/system"); // works
-
-I have added a convenience method to JetAppBase for getting the root app.
-
-```
-getRootApp(){
-	let app:IJetApp = this.app;
-	while (app.app) {
-		app = app.app;
-	}
-	return app;
-}
-```
-
-and JetBase
-
-```
-getRootApp(): IJetApp {
-	return this.app.getRootApp();
-}
-```
-
-I doubt I would ever use more than one level of sub-app, but it would save me having to type this.app.app.app, if I ever did :)
 
 
