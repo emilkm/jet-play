@@ -13,6 +13,9 @@ Two sub-apps
 
 ## Issue 1: JetView is retained in memory after destruction, due to password field. ##
 
+> Maksim: This one is most probably caused by the bug in the Chrome https://bugs.chromium.org/p/chromium/issues/detail?id=967438
+
+
 
 After a fairly good chase, I think I have find one culprit. In a simplified two module app, with login page, the login page is retained when the form has a password field.
 

@@ -3,14 +3,18 @@ import {JetView, plugins} from "webix-jet";
 export default class JetViewModule2Page1 extends JetView {
 
     config() {
-        const self = this;
-
         return {
             rows: [
-                { view: "button", value: "Module1", width: 300,
-                    click: () => {
-                        this.app.app.show("/top/module1");
-                    }
+                { view: "form", localId: "person:detail:form", borderless: true, elementsConfig: { labelWidth: 120 },
+                    rows: [
+                        { view: "combo", localId: "title", name: "title", label: "Title",
+                            options: [
+                                {id: 1, value: "a"},
+                                {id: 2, value: "b"}
+                            ]
+                        },
+                        {}
+                    ]
                 },
                 {}
             ]
@@ -18,7 +22,6 @@ export default class JetViewModule2Page1 extends JetView {
     }
 
     init(view, url) {
-        const self = this;
 
     }
 
@@ -31,10 +34,6 @@ export default class JetViewModule2Page1 extends JetView {
     }
 
     urlChange(view, url){
-
-    }
-
-    reset() {
 
     }
 }
