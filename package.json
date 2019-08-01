@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "webix": "^6.4.0",
-    "webix-jet": "^2.1.1",
+    "webix-jet": "^2.1.2",
     "webix-polyglot": "^2.3.0"
   }
 }
